@@ -15,8 +15,10 @@ describe("Users.vue", () => {
     expect(title.exists()).toBe(true);
     expect(title.html()).toContain("List of users");
   });
-  test.skip("If there is no user, show only a message", () => {
-
+  test("If there is no user, show only a message", () => {
+    const wrapper = shallowMount(Users);
+    const noUserMsg = wrapper.findComponent({ ref: 'noUserMsg' })
+    expect(noUserMsg.exists()).toBe(true);
   });
   test.skip("If there are users, show 5 users per page", () => {
 

@@ -27,7 +27,6 @@ describe("Users.vue", () => {
       }),
     });
     const users = wrapper.findAllComponents({ name: 'UsersListItem' });
-    console.log(users);
     expect(users.length).toBe(3);
   });
   test.skip("Show page links after the current page content", () => {

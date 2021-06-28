@@ -15,14 +15,20 @@
 
 <script>
 // components
-import UsersListItem from '@/components/UsersListItem'
+import UsersListItem from "@/components/UsersListItem";
 export default {
   name: "Users",
   components: {
     UsersListItem,
   },
   data: () => ({
-    users: [],
+    users: [
+      {
+        name: "Marco",
+        birth: new Date(1990, 5, 14),
+        profession: "Frontend dev",
+      },
+    ],
   }),
 };
 </script>

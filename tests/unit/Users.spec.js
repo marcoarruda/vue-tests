@@ -21,10 +21,14 @@ describe("Users.vue", () => {
     expect(noUserMsg.exists()).toBe(true);
   });
   test("If there are users, show them", () => {
-    const wrapper = shallowMount(Users);
+    const wrapper = shallowMount(Users, {
+      data: () => ({
+        users: [{}, {}, {}],
+      }),
+    });
     const users = wrapper.findAllComponents({ name: 'UsersListItem' });
     console.log(users);
-    expect(users.length).toBe(5);
+    expect(users.length).toBe(3);
   });
   test.skip("Show page links after the current page content", () => {
 

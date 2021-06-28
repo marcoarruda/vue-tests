@@ -1,5 +1,17 @@
 # vue-tests
 
+## Creating a project like this
+Ref 1: https://cli.vuejs.org/guide/creating-a-project.html#vue-create
+```
+vue create vue-tests
+cd vue-tests
+```
+Ref 2: https://vue-test-utils.vuejs.org/installation/#semantic-versioning
+```
+vue add unit-jest
+npm install --save-dev @vue/test-utils
+```
+
 ## Project setup
 ```
 yarn install

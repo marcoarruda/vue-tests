@@ -3,7 +3,7 @@
     <h1 ref="title">List of users</h1>
     <p ref="noUserMsg">There is no user regitered</p>
     <div ref="list">
-      <UsersListItem v-for="(user, index) of users" :key="index" />
+      <UsersListItem v-for="(user, index) of users.slice(0, 5)" :key="index" />
     </div>
   </div>
 </template>

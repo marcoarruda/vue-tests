@@ -26,8 +26,17 @@ describe("Users.vue", () => {
         users: [{}, {}, {}],
       }),
     });
-    const users = wrapper.findAllComponents({ name: 'UsersListItem' });
+    const users = wrapper.findAllComponents({ name: "UsersListItem" });
     expect(users.length).toBe(3);
+  });
+  test("If there are more than 5 users, show only 5 per page", () => {
+    const wrapper = shallowMount(Users, {
+      data: () => ({
+        users: [{}, {}, {}, {}, {}, {}],
+      }),
+    });
+    const users = wrapper.findAllComponents({ name: "UsersListItem" });
+    expect(users.length).toBe(5);
   });
   test.skip("Show page links after the current page content", () => {
 

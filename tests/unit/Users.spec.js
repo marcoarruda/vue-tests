@@ -9,16 +9,19 @@ describe("Users.vue", () => {
   //   });
   //   expect(wrapper.text()).toMatch(msg);
   // });
-  xtest("Must contain a title 'List of users'", () => {
+  test("Must contain a title 'List of users'", () => {
+    const wrapper = shallowMount(Users);
+    const title = wrapper.findComponent({ ref: "title" });
+    expect(title.exists()).toBe(true);
+    expect(title.html()).toContain("List of users");
+  });
+  test.skip("If there is no user, show only a message", () => {
 
   });
-  xtest("If there is no user, show only a message", () => {
+  test.skip("If there are users, show 5 users per page", () => {
 
   });
-  xtest("If there are users, show 5 users per page", () => {
-
-  });
-  xtest("Show page links after the current page content", () => {
+  test.skip("Show page links after the current page content", () => {
 
   });
 });

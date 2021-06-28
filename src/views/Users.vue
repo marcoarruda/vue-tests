@@ -5,6 +5,11 @@
     <div ref="list">
       <UsersListItem v-for="(user, index) of users.slice(0, 5)" :key="index" />
     </div>
+    <div ref="pagination">
+      <a href="#" v-for="index in Math.floor(users.length / 5)" :key="index">
+        {{ index + 1 }}
+      </a>
+    </div>
   </div>
 </template>
 

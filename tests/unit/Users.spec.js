@@ -38,7 +38,16 @@ describe("Users.vue", () => {
     const users = wrapper.findAllComponents({ name: "UsersListItem" });
     expect(users.length).toBe(5);
   });
-  test.skip("Show page links after the current page content", () => {
-
+  test("Show page links after the current page content", () => {
+    const wrapper = shallowMount(Users, {
+      data: () => ({
+        users: [{}, {}, {}, {}, {}, {}],
+      }),
+    });
+    const pagination = wrapper.findComponent({ ref: "pagination" });
+    expect(pagination.exists()).toBe(true);
+    const paginationLinks = pagination.findAll("a");
+    const pagesCount = Math.floor(wrapper.vm.users.length / 5);
+    expect(paginationLinks.length).toBe(pagesCount);
   });
 });

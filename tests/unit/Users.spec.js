@@ -17,11 +17,14 @@ describe("Users.vue", () => {
   });
   test("If there is no user, show only a message", () => {
     const wrapper = shallowMount(Users);
-    const noUserMsg = wrapper.findComponent({ ref: 'noUserMsg' })
+    const noUserMsg = wrapper.findComponent({ ref: "noUserMsg" });
     expect(noUserMsg.exists()).toBe(true);
   });
-  test.skip("If there are users, show 5 users per page", () => {
-
+  test("If there are users, show them", () => {
+    const wrapper = shallowMount(Users);
+    const users = wrapper.findAllComponents({ name: 'UsersListItem' });
+    console.log(users);
+    expect(users.length).toBe(5);
   });
   test.skip("Show page links after the current page content", () => {
 

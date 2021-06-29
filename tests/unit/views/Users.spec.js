@@ -11,13 +11,20 @@ describe("Users.vue", () => {
   });
 
   test("If there is no user, show only a message about it", () => {
-    const wrapper = shallowMount(Users);
+    const wrapper = shallowMount(Users, {
+      data: () => ({
+        users: [],
+      }),
+    });
     const noUserMsg = wrapper.findComponent({ ref: "noUserMsg" });
     expect(noUserMsg.exists()).toBe(true);
   });
-
   test("If there are users, do NOT show 'no users' msg", () => {
-    const wrapper = shallowMount(Users);
+    const wrapper = shallowMount(Users, {
+      data: () => ({
+        users: [{}],
+      }),
+    });
     const noUserMsg = wrapper.findComponent({ ref: "noUserMsg" });
     expect(noUserMsg.exists()).toBe(false);
   });

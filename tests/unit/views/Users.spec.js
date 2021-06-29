@@ -40,6 +40,16 @@ describe("Users.vue", () => {
     expect(usersItem.length).toBe(users.length);
   });
 
+  test("Show total of users", () => {
+    const users = [{ name: "Marco" }, { name: "Renan" }, { name: "Rubens" }];
+    const wrapper = shallowMount(Users, {
+      data: () => ({
+        users,
+      }),
+    });
+    console.log(wrapper.html());
+  });
+
   test.todo("If there are more than 5 users, show only 5 per page");
 
   test.todo("Show page links properly after the current page content");

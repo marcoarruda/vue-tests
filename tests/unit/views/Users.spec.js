@@ -1,6 +1,17 @@
 import { shallowMount } from "@vue/test-utils";
+import flushPromises from "flush-promises";
 
 import Users from "@/views/Users.vue";
+
+// import axious from "../../../src/axious.js";
+
+jest.mock("axious", () => ({
+  get: Promise.resolve([
+    { name: "Marco" },
+    { name: "Renan" },
+    { name: "Rubens" },
+  ]),
+}));
 
 describe("Users.vue", () => {
   test("Must contain a title 'List of users'", () => {
@@ -50,6 +61,13 @@ describe("Users.vue", () => {
     const counter = wrapper.findComponent({ ref: "counter" });
     expect(counter.exists()).toBe(true);
     expect(counter.html()).toContain(users.length);
+  });
+
+  test("load users from axious", async () => {
+    const wrapper = shallowMount(Users);
+    const users = wrapper.findAllComponents({ name: "UsersLisItem" });
+    await flushPromises();
+    expect(users.length).toBe(3);
   });
 
   test.todo("If there are more than 5 users, show only 5 per page");

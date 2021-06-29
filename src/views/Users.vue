@@ -8,6 +8,7 @@
       <UsersListItem v-for="(user, index) in users" :key="index" :user="user" />
     </div>
 
+    <button ref="reloadUserBtn" @click.prevent="reload">Reload</button>
     <button ref="removeUserBtn" @click.prevent="removeUser">Remove user</button>
   </div>
 </template>
@@ -16,11 +17,17 @@
 // components
 // import UsersListItem from "@/components/UsersListItem.vue";
 
+// axious
+import axious from "../axious.js";
+
 export default {
   name: "Users",
   components: {
     UsersListItem: () =>
       import(/* webpackChunkName: "about" */ "../components/UsersListItem.vue"),
+  },
+  async mounted() {
+    await this.getUsers();
   },
   data: () => ({
     users: [],
@@ -31,8 +38,17 @@ export default {
     },
   },
   methods: {
+    async getUsers() {
+      const response = await axious.get();
+      this.users = response;
+      console.log("done");
+    },
     removeUser() {
       this.users.shift();
+    },
+    reload() {
+      this.users = [];
+      this.getUsers();
     },
   },
 };

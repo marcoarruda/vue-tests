@@ -22,14 +22,23 @@ describe("Users.vue", () => {
   test("If there are users, do NOT show 'no users' msg", () => {
     const wrapper = shallowMount(Users, {
       data: () => ({
-        users: [{}],
+        users: [{ name: "Marco" }],
       }),
     });
     const noUserMsg = wrapper.findComponent({ ref: "noUserMsg" });
     expect(noUserMsg.exists()).toBe(false);
   });
 
-  test.todo("If there are users, show them");
+  test("If there are users, show them", () => {
+    const users = [{ name: "Marco" }, { name: "Renan" }];
+    const wrapper = shallowMount(Users, {
+      data: () => ({
+        users,
+      }),
+    });
+    const usersItem = wrapper.findAllComponents({ name: "UsersListItem" });
+    expect(usersItem.length).toBe(users.length);
+  });
 
   test.todo("If there are more than 5 users, show only 5 per page");
 

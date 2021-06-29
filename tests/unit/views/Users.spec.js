@@ -47,7 +47,9 @@ describe("Users.vue", () => {
         users,
       }),
     });
-    console.log(wrapper.html());
+    const counter = wrapper.findComponent({ ref: "counter" });
+    expect(counter.exists()).toBe(true);
+    expect(counter.html()).toContain(users.length);
   });
 
   test.todo("If there are more than 5 users, show only 5 per page");
